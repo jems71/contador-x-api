@@ -1,8 +1,15 @@
-# Configuración explícita para Railway (Nixpacks builder)
-# Fuerza Python 3.11 porque PyTorch no es estable en Python 3.13 todavía
+# Configuración Railway con Python 3.11 y librerías de sistema para OpenCV/YOLO
 
 [phases.setup]
-nixPkgs = ["python311", "gcc", "pkg-config"]
+nixPkgs = [
+  "python311",
+  "gcc",
+  "pkg-config",
+  "libGL",
+  "libGLU",
+  "glib",
+  "stdenv.cc.cc.lib"
+]
 
 [phases.install]
 cmds = [
@@ -16,3 +23,4 @@ cmd = ". /opt/venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port $PORT"
 
 [variables]
 PYTHON_VERSION = "3.11"
+LD_LIBRARY_PATH = "/nix/store/*-libGL-*/lib:/nix/store/*-glib-*/lib:$LD_LIBRARY_PATH"
