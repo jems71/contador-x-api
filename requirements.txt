@@ -4,11 +4,9 @@ uvicorn[standard]==0.32.0
 pydantic==2.9.2
 
 # Inferencia YOLO
-# ultralytics maneja YOLOv5, v8 y v11 automáticamente — detecta versión del .pt
 ultralytics==8.3.40
 
 # CPU-only PyTorch (más liviano y barato para Railway)
-# Si más adelante quieres GPU, se cambia por torch normal
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.5.1
 torchvision==0.20.1
@@ -17,5 +15,16 @@ torchvision==0.20.1
 Pillow==11.0.0
 numpy==1.26.4
 
-# OpenCV headless (sin GUI, mucho más liviano que opencv-python)
+# OpenCV headless (SIN libGL — esencial para Railway/Docker)
 opencv-python-headless==4.10.0.84
+
+# Otras deps que ultralytics necesita
+matplotlib==3.9.2
+pyyaml==6.0.2
+requests==2.32.3
+scipy==1.14.1
+tqdm==4.66.5
+psutil==6.1.0
+py-cpuinfo==9.0.0
+pandas==2.2.3
+seaborn==0.13.2
